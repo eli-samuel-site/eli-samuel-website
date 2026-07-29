@@ -56,6 +56,16 @@ img{display:block;max-width:100%;}
   background-size:130px 130px;
 }
 
+/* ---- per-page accent: the E mark takes a different colour on each project,
+   so moving through the site shifts the palette one letter at a time ---- */
+body[data-slug="verano"]              {--accent:#c7e07a;}  /* pistachio */
+body[data-slug="modibodi"]            {--accent:#ef2c8f;}  /* client pink */
+body[data-slug="sensory-storytelling"]{--accent:#93dcd2;}  /* pale aqua */
+body[data-slug="grunge"]              {--accent:#f0dd8a;}  /* butter */
+body[data-slug="surrealism"]          {--accent:#aab6f2;}  /* periwinkle */
+body[data-slug="scrapbook-scanner"]   {--accent:#f6b49a;}  /* sherbet */
+body[data-page="store"]               {--accent:#a8d5b5;}  /* celadon */
+
 /* ============================ TOP BAR ============================ */
 .topbar{
   position:fixed;top:0;left:0;right:0;z-index:200;height:58px;
@@ -66,18 +76,32 @@ img{display:block;max-width:100%;}
   background-blend-mode:overlay;
 }
 .menu-trigger{
-  display:flex;align-items:center;gap:12px;background:none;border:none;color:var(--paper);
-  cursor:pointer;padding:6px 0;
+  display:flex;align-items:center;gap:.055em;background:none;border:none;color:var(--paper);
+  cursor:pointer;padding:6px 0;font-size:1.5rem;line-height:1;
 }
-.menu-trigger .ham{display:inline-flex;flex-direction:column;gap:4px;}
-.menu-trigger .ham i{width:22px;height:2px;background:var(--lime);display:block;transition:transform .3s ease;}
-.menu-trigger:hover .ham i:nth-child(1){transform:translateX(4px);}
-.menu-trigger:hover .ham i:nth-child(3){transform:translateX(-4px);}
-/* wordmark: a modern editorial serif — keeps the serif character of the original
-   mark but in a lighter, contemporary cut that suits a photographer's name.
-   Set as "Eli Samuel" in nav.js; no text-transform so the caps stay as authored. */
-.menu-trigger .wm{font-family:'Instrument Serif',Georgia,serif;font-weight:400;
-  font-size:1.62rem;letter-spacing:.005em;line-height:1;}
+/* ---- the "E" mark ----
+   A hamburger's three bars are also the three arms of a capital E, so the menu
+   control IS the first letter of the name: [E]li Samuel. The middle arm is
+   shortened the way a real typographic E's is — that's what tips it from
+   reading as an icon to reading as a letter. On hover it extends to full width,
+   which re-reads it as a menu. Sized in em so it tracks the wordmark. */
+.e-mark{
+  display:inline-flex;flex-direction:column;justify-content:space-between;
+  width:.47em;height:.715em;flex:0 0 auto;
+}
+.e-mark i{display:block;height:.085em;min-height:2px;background:var(--accent);
+  transition:width .32s cubic-bezier(.6,0,.2,1);}
+.e-mark i:nth-child(1),.e-mark i:nth-child(3){width:100%;}
+.e-mark i:nth-child(2){width:72%;}
+.menu-trigger:hover .e-mark i:nth-child(2){width:100%;}
+.menu-trigger:focus-visible{outline:2px solid var(--accent);outline-offset:4px;}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
+  clip:rect(0,0,0,0);white-space:nowrap;border:0;}
+/* wordmark: Space Grotesk — even stroke weight, so it sits naturally beside bars
+   of uniform thickness (a high-contrast serif would clash with them), and it's
+   the sibling of the Space Mono already used for every caption on the site. */
+.menu-trigger .wm{font-family:'Space Grotesk','Archivo',sans-serif;font-weight:500;
+  font-size:1em;letter-spacing:-.005em;line-height:1;}
 .tmeta{display:flex;gap:26px;font-family:'Archivo',sans-serif;font-weight:700;font-size:.62rem;letter-spacing:.01em;line-height:1.2;color:#a29e94;}
 .tmeta b{display:block;color:var(--paper);font-weight:700;}
 /* right-hand section label in the condensed display face, like the report */
@@ -97,7 +121,7 @@ body[data-nav="clear"] .tright,
 body[data-nav="clear"] .tright .pg{color:#160f0b;}
 body[data-nav="clear"] .tmeta{color:rgba(22,15,11,.6);}
 body[data-nav="clear"] .tmeta b{color:#160f0b;}
-body[data-nav="clear"] .menu-trigger .ham i{background:#160f0b;}
+body[data-nav="clear"] .e-mark i{background:#160f0b;}
 
 /* ============================ SLIDE-OUT NAV ============================ */
 .overlay{
@@ -113,8 +137,10 @@ body[data-nav="clear"] .menu-trigger .ham i{background:#160f0b;}
   display:flex;align-items:center;justify-content:space-between;padding:0 22px;
   background:var(--black);color:var(--paper);
 }
-.ov-bar .wm{font-family:'Instrument Serif',Georgia,serif;font-weight:400;
-  font-size:1.62rem;letter-spacing:.005em;}
+.ov-bar{font-size:1.5rem;}
+.ov-bar .brandmark{display:flex;align-items:center;gap:.055em;}
+.ov-bar .wm{font-family:'Space Grotesk','Archivo',sans-serif;font-weight:500;
+  font-size:1em;letter-spacing:-.005em;line-height:1;}
 .ov-close{background:none;border:none;color:var(--paper);cursor:pointer;
   font-family:'Space Mono',monospace;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;}
 .ov-close:hover{color:var(--lime);}
@@ -338,7 +364,7 @@ body[data-look="bright"] .tright,
 body[data-look="bright"] .tright .pg{color:#111;}
 body[data-look="bright"] .tmeta{color:#8b8b8b;}
 body[data-look="bright"] .tmeta b{color:#111;}
-body[data-look="bright"] .menu-trigger .ham i{background:var(--mb-pink,#ef2c8f);}
+body[data-look="bright"] .e-mark i{background:var(--accent);}
 
 .mb-head{
   padding:104px 4vw 44px;
@@ -550,9 +576,7 @@ body[data-look="bright"] .menu-trigger .ham i{background:var(--mb-pink,#ef2c8f);
 }
 @media(max-width:600px){
   .topbar{gap:12px;padding:0 14px;}
-  .menu-trigger{gap:9px;}
-  .menu-trigger .wm{font-size:1.18rem;}
-  .menu-trigger .ham i{width:18px;}
+  .menu-trigger{gap:.13em;font-size:1.12rem;}
   .tright{gap:10px;font-size:.54rem;}
   .tright .pg{font-size:.72rem;}
   .tright span:first-child{max-width:42vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}

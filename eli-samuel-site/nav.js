@@ -28,9 +28,9 @@
 
   const topbar = `
     <div class="topbar">
-      <button class="menu-trigger" id="mtrig" aria-label="open menu">
-        <span class="ham"><i></i><i></i><i></i></span>
-        <span class="wm">Eli Samuel</span>
+      <button class="menu-trigger" id="mtrig" aria-label="Open menu">
+        <span class="e-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="wm"><span class="sr-only">E</span>li Samuel</span>
       </button>
       <div class="tmeta">
         <span><b>Portfolio</b>image maker</span>
@@ -47,7 +47,10 @@
   const overlay = `
     <div class="overlay" id="overlay">
       <div class="ov-bar">
-        <span class="wm">Eli Samuel</span>
+        <span class="brandmark">
+          <span class="e-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="wm"><span class="sr-only">E</span>li Samuel</span>
+        </span>
         <button class="ov-close" id="mclose">✕ close</button>
       </div>
       <div class="ov-left">
