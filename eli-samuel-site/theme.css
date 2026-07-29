@@ -160,6 +160,17 @@ body[data-nav="clear"] .menu-trigger .ham i{background:#160f0b;}
 .right-col .cell{position:relative;flex:1;overflow:hidden;}
 .right-col .cell .cap{left:8px;bottom:8px;}
 
+/* ---- scrollable right column: use when a project has more than 2 images
+   to show — cells get a fixed height and the column scrolls vertically to reveal
+   the rest (mouse wheel / touch), instead of a full-bleed horizontal filmstrip ---- */
+.right-col.scroll-col{overflow-y:auto;overflow-x:hidden;scrollbar-width:none;}
+.right-col.scroll-col::-webkit-scrollbar{width:0;background:transparent;}
+.right-col.scroll-col .cell{flex:0 0 auto;height:42vh;}
+@media(max-width:900px){
+  .right-col.scroll-col{overflow-y:visible;}
+  .right-col.scroll-col .cell{height:auto;flex:1;}
+}
+
 .panel{
   position:relative;z-index:3;
   margin-left:39vw;margin-right:16vw;margin-top:96px;

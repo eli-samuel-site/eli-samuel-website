@@ -32,42 +32,56 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;700&family=Space+Mono:wght@400;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="theme.css">
+<style>
+  .bgimg{
+    background:
+      repeating-linear-gradient(45deg, rgba(200,190,180,.12) 0 1px, transparent 1px 26px),
+      repeating-linear-gradient(-45deg, rgba(200,190,180,.12) 0 1px, transparent 1px 26px),
+      linear-gradient(180deg,#b39079 0%,#8c6554 40%,#5a463c 72%,#2c2622 100%);
+  }
+</style>
 </head>
 <body data-project="0">
   <div id="chrome"></div>
 
-  <main class="gallery-page">
-    <div class="gallery" id="strip">
-      <div class="shot lb-item" style="background:url('images/home-hero.jpg') center/cover no-repeat;">
+  <main class="page">
+    <div class="bgimg"></div>
+
+    <div class="stage">
+      <!-- large left image -->
+      <div class="hero-left lb-item" style="background:url('images/home-hero.jpg') center/cover no-repeat;">
         <span class="kind">photo</span>
         <div class="cap"><b></b>barcelona<br>id: 001·001</div>
       </div>
-      <div class="shot wide lb-item" style="background:url('images/home-2.jpg') center/cover no-repeat;">
-        <span class="kind">photo</span>
-        <div class="cap"><b></b>rooftop<br>id: 001·002</div>
-      </div>
-      <div class="shot lb-item" style="background:url('images/home-3.jpg') center/cover no-repeat;">
-        <span class="kind">photo</span>
-        <div class="cap"><b></b>siesta<br>id: 001·003</div>
-      </div>
-      <div class="shot wide lb-item" style="background:url('images/home-4.jpg') center/cover no-repeat;">
-        <span class="kind">photo</span>
-        <div class="cap"><b></b>campo<br>id: 001·004</div>
-      </div>
-      <div class="shot lb-item" data-video="videos/swim.mp4" data-poster="images/swim-poster.jpg"
-           style="background:url('images/swim-poster.jpg') center/cover no-repeat;">
-        <span class="kind video">film</span>
-        <span class="playbtn"></span>
-        <div class="cap"><b></b>swim swim / reel<br>id: 001·005</div>
-      </div>
-      <div class="shot wide lb-item" style="background:url('images/home-5.jpg') center/cover no-repeat;">
-        <span class="kind">photo</span>
-        <div class="cap"><b></b>bajo el agua<br>id: 001·006</div>
-      </div>
-    </div>
 
-    <!-- content panel: pinned in place while the filmstrip above scrolls behind it -->
-    <section class="panel fixed-panel">
+      <!-- right column: scrolls vertically to reveal all the project's images/video -->
+      <div class="right-col scroll-col">
+        <div class="cell lb-item" style="background:url('images/home-2.jpg') center/cover no-repeat;">
+          <span class="kind">photo</span>
+          <div class="cap"><b></b>rooftop<br>id: 001·002</div>
+        </div>
+        <div class="cell lb-item" style="background:url('images/home-3.jpg') center/cover no-repeat;">
+          <span class="kind">photo</span>
+          <div class="cap"><b></b>siesta<br>id: 001·003</div>
+        </div>
+        <div class="cell lb-item" data-video="videos/swim.mp4" data-poster="images/swim-poster.jpg"
+             style="background:url('images/swim-poster.jpg') center/cover no-repeat;">
+          <span class="kind video">film</span>
+          <span class="playbtn"></span>
+          <div class="cap"><b></b>swim swim / reel<br>id: 001·004</div>
+        </div>
+        <div class="cell lb-item" style="background:url('images/home-4.jpg') center/cover no-repeat;">
+          <span class="kind">photo</span>
+          <div class="cap"><b></b>campo<br>id: 001·005</div>
+        </div>
+        <div class="cell lb-item" style="background:url('images/home-5.jpg') center/cover no-repeat;">
+          <span class="kind">photo</span>
+          <div class="cap"><b></b>bajo el agua<br>id: 001·006</div>
+        </div>
+      </div>
+
+      <!-- content panel -->
+      <section class="panel">
       <h1>verano</h1>
       <div class="subrow">
         <div class="sub">
