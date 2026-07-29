@@ -32,67 +32,79 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;700&family=Space+Mono:wght@400;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="theme.css">
-<style>
-  .bgimg{
-    background:
-      repeating-linear-gradient(45deg, rgba(200,190,180,.12) 0 1px, transparent 1px 26px),
-      repeating-linear-gradient(-45deg, rgba(200,190,180,.12) 0 1px, transparent 1px 26px),
-      linear-gradient(180deg,#b39079 0%,#8c6554 40%,#5a463c 72%,#2c2622 100%);
-  }
-</style>
 </head>
 <body data-project="0">
   <div id="chrome"></div>
 
-  <main class="page">
-    <div class="bgimg"></div>
-
-    <div class="stage">
-      <!-- large left image -->
-      <div class="hero-left lb-item" style="background:url('images/home-hero.jpg') center/cover no-repeat;">
+  <main class="gallery-page">
+    <div class="gallery" id="strip">
+      <div class="shot lb-item" style="background:url('images/home-hero.jpg') center/cover no-repeat;">
         <span class="kind">photo</span>
         <div class="cap"><b></b>barcelona<br>id: 001·001</div>
       </div>
+      <div class="shot wide lb-item" style="background:url('images/home-2.jpg') center/cover no-repeat;">
+        <span class="kind">photo</span>
+        <div class="cap"><b></b>rooftop<br>id: 001·002</div>
+      </div>
+      <div class="shot lb-item" style="background:url('images/home-3.jpg') center/cover no-repeat;">
+        <span class="kind">photo</span>
+        <div class="cap"><b></b>siesta<br>id: 001·003</div>
+      </div>
+      <div class="shot wide lb-item" style="background:url('images/home-4.jpg') center/cover no-repeat;">
+        <span class="kind">photo</span>
+        <div class="cap"><b></b>campo<br>id: 001·004</div>
+      </div>
+      <div class="shot lb-item" data-video="videos/swim.mp4" data-poster="images/swim-poster.jpg"
+           style="background:url('images/swim-poster.jpg') center/cover no-repeat;">
+        <span class="kind video">film</span>
+        <span class="playbtn"></span>
+        <div class="cap"><b></b>swim swim / reel<br>id: 001·005</div>
+      </div>
+      <div class="shot wide lb-item" style="background:url('images/home-5.jpg') center/cover no-repeat;">
+        <span class="kind">photo</span>
+        <div class="cap"><b></b>bajo el agua<br>id: 001·006</div>
+      </div>
+    </div>
 
-      <!-- right images -->
-      <div class="right-col">
-        <div class="cell lb-item" style="background:url('images/home-2.jpg') center/cover no-repeat;">
-          <span class="kind">photo</span>
-          <div class="cap"><b></b>rooftop<br>id: 001·002</div>
-        </div>
-        <div class="cell lb-item" data-video="videos/swim.mp4" data-poster="images/swim-poster.jpg"
-             style="background:url('images/swim-poster.jpg') center/cover no-repeat;">
-          <span class="kind video">film</span>
-          <span class="playbtn"></span>
-          <div class="cap"><b></b>swim swim / reel<br>id: 001·003</div>
+    <!-- content panel: pinned in place while the filmstrip above scrolls behind it -->
+    <section class="panel fixed-panel">
+      <h1>verano</h1>
+      <div class="subrow">
+        <div class="sub">
+          <div class="st">barcelona, spain · summer</div>
+          <div class="dash"></div>
         </div>
       </div>
+      <div class="credits">
+        <p class="lead">Spanish for "Summer," this photo and video project was captured on location in Barcelona under the direction of <a href="https://instagram.com/charlesgrant_" target="_blank" rel="noopener">Charles Grant (@charlesgrant_)</a>, with photography and cinematography by <a href="https://instagram.com/charlesgrant_" target="_blank" rel="noopener">Charles Grant (@charlesgrant_)</a> and <a href="https://instagram.com/elisamuelphoto" target="_blank" rel="noopener">Eli Samuel (@elisamuelphoto)</a>.</p>
 
-      <!-- content panel -->
-      <section class="panel">
-        <h1>direct<br>flash</h1>
-        <div class="subrow">
-          <div class="sub">
-            <div class="st">give your design a visual exclamation point.</div>
-            <div class="dash"></div>
+        <div class="crow">
+          <div class="clabel">director</div>
+          <div class="cnames"><div><a href="https://instagram.com/charlesgrant_" target="_blank" rel="noopener">Charles Grant (@charlesgrant_)</a></div></div>
+        </div>
+        <div class="crow">
+          <div class="clabel">dp</div>
+          <div class="cnames"><div><a href="https://instagram.com/elisamuelphoto" target="_blank" rel="noopener">Eli Samuel (@elisamuelphoto)</a></div></div>
+        </div>
+        <div class="crow">
+          <div class="clabel">creative team</div>
+          <div class="cnames">
+            <div>Mario Volpi (<a href="https://instagram.com/mariovolpi_" target="_blank" rel="noopener">@mariovolpi_</a>)</div>
+            <div>Lluc Duran (<a href="https://instagram.com/lluc.duran" target="_blank" rel="noopener">@lluc.duran</a>)</div>
+            <div>Albert L. V. (<a href="https://instagram.com/albertt.l.v" target="_blank" rel="noopener">@albertt.l.v</a>)</div>
+            <div>Eliseu Casas (<a href="https://instagram.com/eliseucasas" target="_blank" rel="noopener">@eliseucasas</a>)</div>
           </div>
         </div>
-        <div class="cols">
-          <div>
-            <p>direct flash sheds the "cheap fix" reputation and becomes a campaign-defining style. polished studio light no longer carries the same weight.</p>
-            <p>it brings striking contrast and pops of color — a sharp split of highlight and shadow that leaves natural space for type.</p>
-          </div>
-          <div>
-            <p>the work feels lived-in, not staged. audiences respond because it reflects the culture they recognize.</p>
-            <p>that rawness makes the image more compelling, more human — an instant connection before a headline is read.</p>
-          </div>
-          <div>
-            <p><strong>pro tip:</strong> shoot with an editorial mindset. pair direct flash with slow-shutter drag for a cohesive, cinematic campaign.</p>
-            <a class="explore" href="project-2.html">explore imagery →</a>
+        <div class="crow">
+          <div class="clabel">model agencies</div>
+          <div class="cnames">
+            <div>Blow Models (<a href="https://instagram.com/blowmodels" target="_blank" rel="noopener">@blowmodels</a>)</div>
+            <div>View Management (<a href="https://instagram.com/viewmanagement" target="_blank" rel="noopener">@viewmanagement</a>)</div>
           </div>
         </div>
-      </section>
-    </div>
+      </div>
+      <a class="explore" href="project-2.html">explore imagery →</a>
+    </section>
   </main>
 
   <div class="film-lift"></div>

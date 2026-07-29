@@ -186,6 +186,33 @@ body[data-nav="clear"] .menu-trigger .ham i{background:#160f0b;}
   .panel .subrow{justify-content:flex-start;margin-top:16px;}
 }
 
+/* ---- panel pinned in place over a full-bleed horizontal scroll gallery
+   (used on the Verano homepage: the filmstrip of photos/video scrolls behind it) ---- */
+.panel.fixed-panel{
+  position:fixed;top:96px;left:36vw;right:8vw;margin:0;z-index:60;
+  max-height:calc(100svh - 136px);overflow-y:auto;
+}
+@media(max-width:900px){
+  .panel.fixed-panel{position:static;top:auto;left:auto;right:auto;margin:0 2.4vw;max-height:none;overflow-y:visible;}
+}
+
+/* ---- production credits block, inside a .panel ---- */
+.credits{margin-top:26px;padding-top:20px;border-top:1px solid var(--line);}
+.credits .lead{font-size:.83rem;line-height:1.6;color:#2c2a24;margin-bottom:22px;}
+.credits .lead a{text-decoration:underline;text-underline-offset:3px;}
+.credits .lead a:hover{color:var(--ink);background:var(--lime);}
+.crow{display:grid;grid-template-columns:118px 1fr;gap:10px;padding:10px 0;border-top:1px solid var(--line);
+  font-family:'Space Mono',monospace;font-size:.66rem;letter-spacing:.03em;text-transform:uppercase;}
+.crow:first-of-type{border-top:none;}
+.crow .clabel{color:var(--ink-soft);}
+.crow .cnames{color:var(--ink);line-height:1.6;}
+.crow .cnames div{margin-bottom:1px;}
+.crow .cnames a{text-decoration:underline;text-underline-offset:2px;}
+.crow .cnames a:hover{color:var(--ink);background:var(--lime);}
+@media(max-width:900px){
+  .crow{grid-template-columns:100px 1fr;}
+}
+
 /* ============================ QUOTE SPREAD ============================ */
 .quote-page{position:relative;min-height:100svh;background:var(--red);}
 .qspread{position:relative;z-index:2;min-height:100svh;padding:76px 2.4vw 44px;
