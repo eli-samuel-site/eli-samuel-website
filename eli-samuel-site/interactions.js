@@ -49,14 +49,23 @@
   }
   function render(){
     const it=items[cur];
-    lbImg.style.background = bgOf(it);
-    lbImg.style.backgroundSize='cover'; lbImg.style.backgroundPosition='center';
+    const video = it.dataset.video;
+    if(video){
+      // video item: play an actual <video> in the lightbox
+      lbImg.style.background = '#000';
+      lbImg.innerHTML = '<video src="'+video+'" poster="'+(it.dataset.poster||'')+'" '+
+        'controls autoplay playsinline style="width:100%;height:100%;object-fit:contain;background:#000"></video>';
+    } else {
+      lbImg.innerHTML = '';
+      lbImg.style.background = bgOf(it);
+      lbImg.style.backgroundSize='cover'; lbImg.style.backgroundPosition='center';
+    }
     const c=it.querySelector('.cap');
     lbCap.innerHTML = c ? c.innerHTML : '';
     lbCount.textContent = ('0'+(cur+1)).slice(-2)+' / '+('0'+items.length).slice(-2);
   }
   function open(i){ cur=i; render(); lb.classList.add('open'); document.body.classList.add('locked'); }
-  function close(){ lb.classList.remove('open'); document.body.classList.remove('locked'); }
+  function close(){ lbImg.innerHTML=''; lb.classList.remove('open'); document.body.classList.remove('locked'); }
   function step(d){ cur=(cur+d+items.length)%items.length; render(); }
 
   items.forEach((it,i)=>{

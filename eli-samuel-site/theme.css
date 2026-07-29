@@ -306,6 +306,15 @@ body[data-nav="clear"] .menu-trigger .ham i{background:#160f0b;}
 .lb-nav.prev{left:16px;} .lb-nav.next{right:16px;}
 .lb-count{position:fixed;top:22px;left:24px;z-index:2;font-family:'Space Mono',monospace;font-size:.62rem;
   letter-spacing:.14em;text-transform:uppercase;color:rgba(240,240,236,.75);}
+.lb-img video{width:100%;height:100%;object-fit:contain;background:#000;}
+
+/* play button overlay on any video tile (elements with data-video) */
+[data-video]{cursor:pointer;}
+.playbtn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:4;pointer-events:none;
+  width:56px;height:56px;border-radius:50%;border:2px solid rgba(255,255,255,.92);
+  display:flex;align-items:center;justify-content:center;background:rgba(20,16,13,.32);transition:transform .25s ease;}
+[data-video]:hover .playbtn{transform:translate(-50%,-50%) scale(1.08);}
+.playbtn::after{content:"";border-left:16px solid #fff;border-top:10px solid transparent;border-bottom:10px solid transparent;margin-left:4px;}
 
 /* ============================ STORE (shop grid) ============================ */
 .store-page{position:relative;min-height:100svh;background:var(--purple,#c177bc);}
