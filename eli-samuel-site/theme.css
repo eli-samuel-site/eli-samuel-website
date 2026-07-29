@@ -204,6 +204,9 @@ body[data-nav="clear"] .menu-trigger .ham i{background:#160f0b;}
 /* the default subrow tucks up under a two-line headline; with a single-word
    title like "verano" that negative offset collides with it, so clear it */
 .panel.no-rightcol .subrow{margin-top:14px;}
+/* this panel is narrower than the full-width one, so body copy reads better
+   as a single column than squeezed into three */
+.panel.no-rightcol .cols{grid-template-columns:1fr;gap:0;}
 
 @media(max-width:900px){
   .hero-strip{position:relative;left:auto;top:auto;bottom:auto;width:auto;height:56vh;margin:0 2.4vw 14px;}

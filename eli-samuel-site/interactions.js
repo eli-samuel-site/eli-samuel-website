@@ -1,7 +1,28 @@
 /* eli samuel — shared interactions:
    (1) drag/wheel horizontal scroll for any .gallery / .hero-strip filmstrip
-   (2) a universal lightbox for any .lb-item or .shot on the page */
+   (2) a universal lightbox for any .lb-item or .shot on the page
+
+   On pages driven by project.js the tiles are created asynchronously from JSON,
+   so this waits for the "project:rendered" event before binding. On static pages
+   it runs immediately. */
 (function(){
+  const slug = document.body.dataset.slug;
+  if(slug){
+    document.addEventListener('project:rendered', init, {once:true});
+    // safety net: if the renderer never fires (blocked fetch, bad JSON), bind anyway
+    setTimeout(() => init(), 4000);
+  } else {
+    init();
+  }
+
+  let started = false;
+  function init(){
+    if(started) return;
+    started = true;
+    setup();
+  }
+
+function setup(){
   /* ---------- gallery drag / wheel (supports multiple strips per page) ---------- */
   let dragMoved = false;
   document.querySelectorAll('.gallery, .hero-strip').forEach(strip=>{
@@ -98,4 +119,5 @@
     else if(e.key==='ArrowLeft') step(-1);
     else if(e.key==='ArrowRight') step(1);
   });
+}
 })();

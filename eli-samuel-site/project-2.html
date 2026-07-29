@@ -34,30 +34,28 @@
   }
 </style>
 </head>
-<body data-project="1">
+<body data-project="1" data-slug="maximalism">
   <div id="chrome"></div>
 
   <main class="page">
     <div class="bgimg"></div>
 
     <div class="stage">
-      <div class="hero-left lb-item" style="background:linear-gradient(160deg,#9a6a80,#2c2430 78%);">
-        <span class="kind">photo</span>
-        <div class="cap"><b></b>beatriz valim<br>los angeles, usa<br>id: 021·725</div>
-      </div>
-
-      <div class="right-col">
-        <div class="cell lb-item" style="background:linear-gradient(160deg,#c98a2a,#2a1e08);">
-          <span class="kind">photo</span>
+      <!-- horizontal filmstrip — filled from data/projects/maximalism.json when
+           photos are added in the CMS; these placeholders show until then -->
+      <div class="hero-strip" id="strip">
+        <div class="hcell lb-item" style="background:linear-gradient(160deg,#9a6a80,#2c2430 78%);">
+          <div class="cap"><b></b>beatriz valim<br>id: 021·725</div>
+        </div>
+        <div class="hcell wide lb-item" style="background:linear-gradient(160deg,#c98a2a,#2a1e08);">
           <div class="cap"><b></b>ilka and franz<br>id: 287·925</div>
         </div>
-        <div class="cell lb-item" style="background:linear-gradient(160deg,#3a7a6a,#0e2420);">
-          <span class="kind video">film</span>
+        <div class="hcell lb-item" style="background:linear-gradient(160deg,#3a7a6a,#0e2420);">
           <div class="cap"><b></b>reel<br>id: 293·439</div>
         </div>
       </div>
 
-      <section class="panel">
+      <section class="panel no-rightcol">
         <h1>maxi&shy;malism</h1>
         <div class="subrow">
           <div class="sub">
@@ -87,6 +85,7 @@
   <div class="grain"></div>
   <div class="grain-dark"></div>
   <script src="nav.js"></script>
+  <script src="project.js"></script>
   <script src="interactions.js"></script>
 </body>
 </html>

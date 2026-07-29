@@ -2,6 +2,8 @@ backend:
   name: git-gateway
   branch: main
 
+# Where uploaded photos are stored in the repo, and how the site references them.
+# (Files live in the eli-samuel-site/ subfolder of the repo, so repo-root paths are prefixed.)
 media_folder: "eli-samuel-site/images/uploads"
 public_folder: "/images/uploads"
 
@@ -9,7 +11,113 @@ site_url: https://eli-samuel-portfolio.netlify.app
 display_url: https://eli-samuel-portfolio.netlify.app
 logo_url: https://eli-samuel-portfolio.netlify.app/og-cover.png
 
+# ---------------------------------------------------------------------------
+# Reusable field groups (YAML anchors — defined once, reused per project below)
+# ---------------------------------------------------------------------------
+media_field: &media_field
+  label: "Photos & video"
+  name: "media"
+  widget: "list"
+  required: false
+  label_singular: "item"
+  summary: "{{fields.caption}}"
+  hint: "Drag to reorder — this is the left-to-right order on the page."
+  fields:
+    - { label: "Photo", name: "image", widget: "image", required: false,
+        hint: "For a photo. Leave empty if this item is a video." }
+    - { label: "Caption", name: "caption", widget: "string", required: false,
+        hint: "Small label in the corner, e.g. barcelona" }
+    - { label: "Reference no.", name: "id", widget: "string", required: false,
+        hint: "Optional, e.g. 001·007" }
+    - { label: "Wide (landscape)", name: "wide", widget: "boolean", default: false,
+        hint: "On for landscape shots, off for portrait." }
+    - { label: "Video file", name: "video", widget: "file", required: false,
+        hint: "Only for video items. Must be an MP4 (H.264)." }
+    - { label: "Video thumbnail", name: "poster", widget: "image", required: false,
+        hint: "The still shown before the video plays." }
+
+credits_field: &credits_field
+  label: "Credits"
+  name: "credits"
+  widget: "list"
+  required: false
+  label_singular: "credit row"
+  summary: "{{fields.label}}"
+  fields:
+    - { label: "Role", name: "label", widget: "string", hint: "e.g. director, dp, creative team" }
+    - label: "People"
+      name: "people"
+      widget: "list"
+      summary: "{{fields.name}}"
+      fields:
+        - { label: "Name", name: "name", widget: "string" }
+        - { label: "Instagram handle", name: "instagram", widget: "string", required: false,
+            hint: "Without the @, e.g. elisamuelphoto" }
+
+title_field: &title_field
+  { label: "Title", name: "title", widget: "string" }
+subtitle_field: &subtitle_field
+  { label: "Subtitle", name: "subtitle", widget: "string", required: false }
+
 collections:
+  # ======================= PROJECTS =======================
+  - name: "projects"
+    label: "Projects"
+    delete: false
+    files:
+      - file: "eli-samuel-site/data/projects/verano.json"
+        name: "verano"
+        label: "Verano"
+        description: "Barcelona summer project — photos, video, copy and credits."
+        fields:
+          - *title_field
+          - *subtitle_field
+          - { label: "Description", name: "intro", widget: "text", required: false,
+              hint: "Plain text. Any @handle becomes an Instagram link automatically." }
+          - *credits_field
+          - *media_field
+
+      - file: "eli-samuel-site/data/projects/maximalism.json"
+        name: "maximalism"
+        label: "Maximalism"
+        fields:
+          - *title_field
+          - *subtitle_field
+          - *media_field
+
+      - file: "eli-samuel-site/data/projects/sensory-storytelling.json"
+        name: "sensory-storytelling"
+        label: "Sensory Storytelling"
+        fields:
+          - *title_field
+          - *subtitle_field
+          - *media_field
+
+      - file: "eli-samuel-site/data/projects/grunge.json"
+        name: "grunge"
+        label: "Grunge"
+        fields:
+          - *title_field
+          - *subtitle_field
+          - *media_field
+
+      - file: "eli-samuel-site/data/projects/scrapbook-scanner.json"
+        name: "scrapbook-scanner"
+        label: "Scrapbook / Scanner"
+        fields:
+          - *title_field
+          - *subtitle_field
+          - *media_field
+
+      - file: "eli-samuel-site/data/projects/surrealism.json"
+        name: "surrealism"
+        label: "Surrealism"
+        fields:
+          - *title_field
+          - *subtitle_field
+          - *media_field
+
+  # ======================= STORE =======================
   - name: "store"
     label: "Store"
     delete: false
@@ -26,7 +134,7 @@ collections:
             summary: "{{fields.title}} — {{fields.price}}"
             fields:
               - { label: "Title",  name: "title",  widget: "string" }
-              - { label: "Medium / edition", name: "medium", widget: "string" }
-              - { label: "Price",  name: "price",  widget: "string" }
+              - { label: "Medium / edition", name: "medium", widget: "string", hint: "e.g. handmade book · ed. 40" }
+              - { label: "Price",  name: "price",  widget: "string", hint: "include the $, e.g. $120" }
               - { label: "Type",   name: "kind",   widget: "select", options: ["book", "print", "zine", "box set"] }
-              - { label: "Photo",  name: "image",  widget: "image", required: false }
+              - { label: "Photo",  name: "image",  widget: "image", required: false, hint: "Optional. If empty, a tonal placeholder is shown." }
