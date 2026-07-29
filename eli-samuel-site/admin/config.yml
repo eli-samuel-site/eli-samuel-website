@@ -1,0 +1,34 @@
+backend:
+  name: git-gateway
+  branch: main
+
+# Where uploaded photos are stored in the repo, and how the site references them.
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+site_url: https://eli-samuel-portfolio.netlify.app
+display_url: https://eli-samuel-portfolio.netlify.app
+logo_url: https://eli-samuel-portfolio.netlify.app/og-cover.png
+
+collections:
+  # -------- STORE --------
+  - name: "store"
+    label: "Store"
+    delete: false
+    files:
+      - file: "data/store.json"
+        name: "items"
+        label: "Store items"
+        description: "Books, prints and editions shown on the store page."
+        fields:
+          - label: "Items"
+            name: "items"
+            widget: "list"
+            label_singular: "item"
+            summary: "{{fields.title}} — {{fields.price}}"
+            fields:
+              - { label: "Title",  name: "title",  widget: "string" }
+              - { label: "Medium / edition", name: "medium", widget: "string", hint: "e.g. handmade book · ed. 40" }
+              - { label: "Price",  name: "price",  widget: "string", hint: "include the $, e.g. $120" }
+              - { label: "Type",   name: "kind",   widget: "select", options: ["book", "print", "zine", "box set"] }
+              - { label: "Photo",  name: "image",  widget: "image", required: false, hint: "Optional. If empty, a tonal placeholder is shown." }
