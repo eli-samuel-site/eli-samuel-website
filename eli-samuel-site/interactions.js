@@ -1,31 +1,41 @@
 /* eli samuel — shared interactions:
-   (1) drag/wheel horizontal scroll for any .gallery filmstrip
+   (1) drag/wheel horizontal scroll for any .gallery / .hero-strip filmstrip
    (2) a universal lightbox for any .lb-item or .shot on the page */
 (function(){
-  /* ---------- gallery drag / wheel ---------- */
+  /* ---------- gallery drag / wheel (supports multiple strips per page) ---------- */
   let dragMoved = false;
-  const strip = document.querySelector('.gallery');
-  if(strip){
-    let down=false, startX=0, startLeft=0;
+  document.querySelectorAll('.gallery, .hero-strip').forEach(strip=>{
+    let down=false, startX=0, startLeft=0, pid=null, captured=false;
     strip.addEventListener('pointerdown', e=>{
       // On touch, let the browser's native momentum scrolling handle it (feels right on phones).
       if(e.pointerType && e.pointerType !== 'mouse') return;
-      down=true; dragMoved=false; startX=e.clientX; startLeft=strip.scrollLeft;
-      strip.classList.add('dragging'); strip.setPointerCapture(e.pointerId);
+      down=true; dragMoved=false; captured=false; startX=e.clientX; startLeft=strip.scrollLeft; pid=e.pointerId;
     });
     strip.addEventListener('pointermove', e=>{
       if(!down) return;
       const dx=e.clientX-startX;
-      if(Math.abs(dx)>4) dragMoved=true;
-      strip.scrollLeft = startLeft - dx;
+      if(Math.abs(dx)>4){
+        // Only grab pointer capture once an actual drag starts — capturing on a
+        // plain click permanently retargets the resulting "click" event to the
+        // strip itself instead of the photo tile, which silently breaks the lightbox.
+        if(!dragMoved){
+          dragMoved=true; strip.classList.add('dragging');
+          if(pid!==null){ strip.setPointerCapture(pid); captured=true; }
+        }
+        strip.scrollLeft = startLeft - dx;
+      }
     });
-    const end=()=>{ down=false; strip.classList.remove('dragging'); };
+    const end=()=>{
+      down=false; strip.classList.remove('dragging');
+      if(captured && pid!==null){ try{ strip.releasePointerCapture(pid); }catch(err){} }
+      captured=false;
+    };
     strip.addEventListener('pointerup', end);
     strip.addEventListener('pointercancel', end);
     strip.addEventListener('wheel', e=>{
       if(Math.abs(e.deltaY)>Math.abs(e.deltaX)){ strip.scrollLeft += e.deltaY; e.preventDefault(); }
     }, {passive:false});
-  }
+  });
 
   /* ---------- universal lightbox ---------- */
   const items = Array.from(document.querySelectorAll('.lb-item, .shot'));

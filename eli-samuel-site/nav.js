@@ -84,6 +84,32 @@
   const mount = document.getElementById('chrome');
   if(mount){ mount.innerHTML = topbar + overlay + arrows; }
 
+  /* ---- touch swipe past the start/end of the image strip navigates to the
+     prev/next project — a mobile-friendly companion to the corner arrows.
+     Only fires once you've swiped past an edge, so it never fights the
+     strip's own left/right scrolling of the photos in between. ---- */
+  if(cur){
+    const prevP = ALL[(idx - 1 + ALL.length) % ALL.length];
+    const nextP = ALL[(idx + 1) % ALL.length];
+    const strip = document.querySelector('.gallery, .hero-strip');
+    if(strip){
+      let sx = 0, sy = 0, startAtMin = false, startAtMax = false;
+      strip.addEventListener('touchstart', e=>{
+        const t = e.touches[0];
+        sx = t.clientX; sy = t.clientY;
+        startAtMin = strip.scrollLeft <= 4;
+        startAtMax = strip.scrollLeft >= strip.scrollWidth - strip.clientWidth - 4;
+      }, {passive:true});
+      strip.addEventListener('touchend', e=>{
+        const t = e.changedTouches[0];
+        const dx = t.clientX - sx, dy = t.clientY - sy;
+        if(Math.abs(dx) < 70 || Math.abs(dx) < Math.abs(dy) * 1.5) return;
+        if(dx < 0 && startAtMax){ window.location.href = nextP.file; }      // swiped left past the last photo
+        else if(dx > 0 && startAtMin){ window.location.href = prevP.file; } // swiped right past the first photo
+      }, {passive:true});
+    }
+  }
+
   const ov = document.getElementById('overlay');
   const open  = () => { ov.classList.add('open');  document.body.classList.add('locked'); };
   const close = () => { ov.classList.remove('open'); document.body.classList.remove('locked'); };

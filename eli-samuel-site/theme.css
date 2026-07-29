@@ -171,6 +171,34 @@ body[data-nav="clear"] .menu-trigger .ham i{background:#160f0b;}
   .right-col.scroll-col .cell{height:auto;flex:1;}
 }
 
+/* ---- hero-strip: a single horizontal-scrolling filmstrip taking the hero-left's
+   spot, holding every image/video for the project (drag / wheel / touch-swipe).
+   the panel sits in its own column beside it and is never covered. ---- */
+.hero-strip{
+  position:absolute;left:2.4vw;top:80px;bottom:78px;width:58vw;z-index:2;
+  display:flex;gap:6px;
+  overflow-x:auto;overflow-y:hidden;
+  cursor:grab;scroll-behavior:smooth;
+  -webkit-overflow-scrolling:touch;touch-action:pan-x;
+}
+.hero-strip.dragging{cursor:grabbing;scroll-behavior:auto;}
+.hero-strip::-webkit-scrollbar{height:0;background:transparent;}
+.hero-strip{scrollbar-width:none;}
+.hero-strip .hcell{position:relative;flex:0 0 auto;height:100%;width:clamp(260px,34vw,460px);overflow:hidden;}
+.hero-strip .hcell.wide{width:clamp(420px,50vw,700px);}
+.hero-strip .hcell .cap{position:absolute;left:12px;bottom:12px;z-index:3;font-family:'Space Mono',monospace;font-size:.54rem;
+  line-height:1.4;letter-spacing:.05em;text-transform:uppercase;color:rgba(240,238,230,.92);}
+.hero-strip .hcell .cap b{display:inline-block;width:7px;height:7px;background:rgba(240,238,230,.92);margin-right:5px;vertical-align:1px;}
+
+/* panel variant used alongside a hero-strip: less right-hand margin since
+   there's no separate right column taking up space anymore */
+.panel.no-rightcol{margin-left:61vw;margin-right:4vw;}
+
+@media(max-width:900px){
+  .hero-strip{position:relative;left:auto;top:auto;bottom:auto;width:auto;height:56vh;margin:0 2.4vw 14px;}
+  .panel.no-rightcol{margin:0 2.4vw;}
+}
+
 .panel{
   position:relative;z-index:3;
   margin-left:39vw;margin-right:16vw;margin-top:96px;
