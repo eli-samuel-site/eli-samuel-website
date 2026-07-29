@@ -68,7 +68,9 @@
     } else {
       lbImg.innerHTML = '';
       lbImg.style.background = bgOf(it);
-      lbImg.style.backgroundSize='cover'; lbImg.style.backgroundPosition='center';
+      // "contain" so the full frame always shows — portrait shots were getting
+      // cropped into a landscape sliver by "cover" against the wide lightbox stage.
+      lbImg.style.backgroundSize='contain'; lbImg.style.backgroundRepeat='no-repeat'; lbImg.style.backgroundPosition='center';
     }
     const c=it.querySelector('.cap');
     lbCap.innerHTML = c ? c.innerHTML : '';

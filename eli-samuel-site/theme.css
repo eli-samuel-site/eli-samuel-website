@@ -359,7 +359,7 @@ body[data-nav="clear"] .menu-trigger .ham i{background:#160f0b;}
 }
 .lightbox.open{display:flex;}
 .lb-stage{position:relative;width:min(88vw,1200px);height:82vh;}
-.lb-img{position:absolute;inset:0;background-size:cover;background-position:center;box-shadow:0 30px 80px rgba(0,0,0,.6);}
+.lb-img{position:absolute;inset:0;background-size:contain;background-repeat:no-repeat;background-position:center;box-shadow:0 30px 80px rgba(0,0,0,.6);}
 .lb-cap{position:absolute;left:2px;bottom:-30px;font-family:'Space Mono',monospace;font-size:.6rem;
   letter-spacing:.06em;text-transform:uppercase;color:rgba(240,240,236,.9);line-height:1.5;}
 .lb-cap b{display:inline-block;width:7px;height:7px;background:rgba(240,240,236,.9);margin-right:5px;vertical-align:1px;}
