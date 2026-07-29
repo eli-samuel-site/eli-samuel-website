@@ -24,7 +24,7 @@
 <title>Modibodi — eli samuel | image maker</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;700&family=Space+Mono:wght@400;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;700&family=Space+Mono:wght@400;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="theme.css">
 </head>
 <body data-project="1" data-slug="modibodi" data-look="bright">
@@ -75,49 +75,19 @@
 
     <!-- asymmetric grid — filled from data/projects/modibodi.json once photos are
          added in the CMS; these placeholders stand in until then -->
+    <!-- fallback only — replaced by data/projects/modibodi.json on load -->
     <div class="mosaic" id="mosaic">
       <div class="mb-marker">
         <span class="m1">TOSSA</span><span class="m2">DE MAR</span>
         <span class="line"></span>
       </div>
-
-      <div class="mtile big lb-item">
-        <div class="img" style="background:linear-gradient(150deg,#f4a08c,#d8556a 70%,#8c2f52);"></div>
-        <div class="cap"><b></b>hotel reymar<br>id: 002·001</div>
+      <div class="mtile land lb-item">
+        <div class="img" style="position:absolute;inset:0;background:url('images/mb-01.jpg') center/cover no-repeat"></div>
+        <div class="cap"><b></b>the set-up<br>id: 002·001</div>
       </div>
-      <div class="mtile big lb-item">
-        <div class="img" style="background:linear-gradient(150deg,#8fc4d8,#2f6d8c 75%);"></div>
-        <div class="cap"><b></b>poolside<br>id: 002·002</div>
-      </div>
-      <div class="mtile std lb-item">
-        <div class="img" style="background:linear-gradient(150deg,#f2c48a,#c07a3a 78%);"></div>
-        <div class="cap"><b></b>terrace<br>id: 002·003</div>
-      </div>
-      <div class="mtile std lb-item">
-        <div class="img" style="background:linear-gradient(120deg,#7fb8c9,#3d7f93 55%,#1e4553);"></div>
-        <div class="cap"><b></b>the cove<br>id: 002·004</div>
-      </div>
-      <div class="mtile std lb-item">
-        <div class="img" style="background:linear-gradient(150deg,#efb5c4,#c25f86 76%);"></div>
-        <div class="cap"><b></b>old town steps<br>id: 002·005</div>
-      </div>
-
-      <div class="mb-marker">
-        <span class="m1">SALT</span><span class="m2">&amp; STONE</span>
-        <span class="line"></span>
-      </div>
-
-      <div class="mtile wide lb-item">
-        <div class="img" style="background:linear-gradient(150deg,#e8dcc8,#b09070 72%,#6a4f3c);"></div>
-        <div class="cap"><b></b>sea wall<br>id: 002·006</div>
-      </div>
-      <div class="mtile std lb-item">
-        <div class="img" style="background:linear-gradient(150deg,#c9d8e0,#5f8496 78%);"></div>
-        <div class="cap"><b></b>after the swim<br>id: 002·007</div>
-      </div>
-      <div class="mtile full lb-item">
-        <div class="img" style="background:linear-gradient(100deg,#f4b9a0,#e0748a 45%,#8d4a76 100%);"></div>
-        <div class="cap"><b></b>golden hour, carrer major<br>id: 002·008</div>
+      <div class="mtile port lb-item">
+        <div class="img" style="position:absolute;inset:0;background:url('images/mb-02.jpg') center/cover no-repeat"></div>
+        <div class="cap"><b></b>watermelon<br>id: 002·002</div>
       </div>
     </div>
   </main>

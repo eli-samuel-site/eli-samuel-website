@@ -10,10 +10,11 @@
   --paper-2:#d8dedd;    /* deeper cool grey */
   --ink:#191b1b;
   --ink-soft:#5b615f;
-  /* accent — warm amber. sits with the warm project palettes and the red/purple
-     spreads without the acid-green clash. --lime kept as an alias so older rules
-     that still reference it pick up the same colour. */
-  --accent:#d9976a;
+  /* accent — pistachio. desaturated enough to read as chosen rather than a UI
+     default, light enough to punch off the dusty black bar, and far enough from
+     the warm tones in the photography that it never disappears into an image.
+     Individual project pages may override it. --lime is a legacy alias. */
+  --accent:#c7e07a;
   --lime:var(--accent);
   --red:#e43b31;        /* vermilion sampled clean from the doc red spread */
   --line:rgba(25,27,27,.16);
@@ -72,10 +73,11 @@ img{display:block;max-width:100%;}
 .menu-trigger .ham i{width:22px;height:2px;background:var(--lime);display:block;transition:transform .3s ease;}
 .menu-trigger:hover .ham i:nth-child(1){transform:translateX(4px);}
 .menu-trigger:hover .ham i:nth-child(3){transform:translateX(-4px);}
-/* wordmark: the site's display face (Anton), so the logo reads as part of the
-   same type system as the headlines and section labels */
-.menu-trigger .wm{font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;
-  font-size:1.36rem;letter-spacing:.045em;line-height:1;}
+/* wordmark: a modern editorial serif — keeps the serif character of the original
+   mark but in a lighter, contemporary cut that suits a photographer's name.
+   Set as "Eli Samuel" in nav.js; no text-transform so the caps stay as authored. */
+.menu-trigger .wm{font-family:'Instrument Serif',Georgia,serif;font-weight:400;
+  font-size:1.62rem;letter-spacing:.005em;line-height:1;}
 .tmeta{display:flex;gap:26px;font-family:'Archivo',sans-serif;font-weight:700;font-size:.62rem;letter-spacing:.01em;line-height:1.2;color:#a29e94;}
 .tmeta b{display:block;color:var(--paper);font-weight:700;}
 /* right-hand section label in the condensed display face, like the report */
@@ -111,8 +113,8 @@ body[data-nav="clear"] .menu-trigger .ham i{background:#160f0b;}
   display:flex;align-items:center;justify-content:space-between;padding:0 22px;
   background:var(--black);color:var(--paper);
 }
-.ov-bar .wm{font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;
-  font-size:1.36rem;letter-spacing:.045em;}
+.ov-bar .wm{font-family:'Instrument Serif',Georgia,serif;font-weight:400;
+  font-size:1.62rem;letter-spacing:.005em;}
 .ov-close{background:none;border:none;color:var(--paper);cursor:pointer;
   font-family:'Space Mono',monospace;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;}
 .ov-close:hover{color:var(--lime);}
@@ -367,21 +369,18 @@ body[data-look="bright"] .menu-trigger .ham i{background:var(--mb-pink,#ef2c8f);
 .mb-page .crow .cnames a{color:var(--mb-pink);}
 .mb-page .crow .cnames a:hover{background:var(--mb-pink);color:#fff;text-decoration:none;}
 
-/* asymmetric photo grid.
-   Sizes are chosen so each row sums to 12 columns AND the tiles sharing a row
-   resolve to the same height — otherwise the grid leaves ragged holes:
-     big + big            6 + 6
-     std + std + std      4 + 4 + 4
-     wide + std           8 + 4   (3/2 and 3/4 land on equal heights)
-     full                 12                                              */
-.mosaic{display:grid;grid-template-columns:repeat(12,1fr);gap:12px;padding:0 4vw 96px;
-  grid-auto-flow:row dense;}
-.mtile{position:relative;overflow:hidden;background:#efeeec;grid-column:span 4;aspect-ratio:3/4;cursor:zoom-in;}
-.mtile.std {grid-column:span 4;aspect-ratio:3/4;}
-.mtile.wide{grid-column:span 8;aspect-ratio:3/2;}
-.mtile.big {grid-column:span 6;aspect-ratio:4/5;}
-.mtile.tall{grid-column:span 4;aspect-ratio:2/3;}
-.mtile.full{grid-column:span 12;aspect-ratio:2/1;}
+/* photo mosaic — grid masonry.
+   CSS columns pack tightly but flow top-to-bottom per column, which scrambles
+   the reading order of a sequenced edit. This grid keeps strict left-to-right
+   DOM order while still packing without holes: each tile keeps its true aspect
+   ratio and project.js measures it, then sets a row span in 1px track units. */
+.mosaic{display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:1px;
+  column-gap:12px;row-gap:0;align-items:start;padding:0 4vw 96px;}
+.mtile{margin-bottom:12px;position:relative;overflow:hidden;
+  background:#efeeec;cursor:zoom-in;aspect-ratio:2/3;}
+.mtile.port{aspect-ratio:2/3;}
+.mtile.land{aspect-ratio:3/2;}
+.mtile.full{aspect-ratio:3/2;}
 .mtile .img{position:absolute;inset:0;background-size:cover;background-position:center;
   transition:transform .6s cubic-bezier(.2,.7,.2,1);}
 .mtile:hover .img{transform:scale(1.035);}
@@ -391,22 +390,19 @@ body[data-look="bright"] .menu-trigger .ham i{background:var(--mb-pink,#ef2c8f);
   letter-spacing:.05em;text-transform:uppercase;color:#fff;text-shadow:0 1px 6px rgba(0,0,0,.5);
 }
 .mtile .cap b{display:inline-block;width:7px;height:7px;background:var(--mb-pink);margin-right:5px;vertical-align:1px;}
-/* section marker that breaks the grid, echoing the client's bold type blocks */
-.mb-marker{grid-column:span 12;display:flex;align-items:baseline;gap:14px;padding:26px 0 6px;}
+/* section marker that breaks the flow, echoing the client's bold type blocks */
+.mb-marker{grid-column:1/-1;display:flex;align-items:baseline;gap:14px;padding:22px 0 14px;}
 .mb-marker span{font-family:'Anton',sans-serif;text-transform:uppercase;font-size:clamp(1.4rem,3.4vw,2.6rem);line-height:1;}
 .mb-marker .m1{color:var(--mb-orange);} .mb-marker .m2{color:var(--mb-pink);}
 .mb-marker .line{flex:1;height:2px;background:#111;opacity:.16;}
 
 @media(max-width:900px){
   .mb-head{grid-template-columns:1fr;gap:26px;padding:88px 5vw 30px;}
-  .mosaic{grid-template-columns:repeat(6,1fr);gap:9px;padding:0 5vw 76px;}
-  .mtile,.mtile.tall,.mtile.big{grid-column:span 3;}
-  .mtile.wide,.mtile.full{grid-column:span 6;}
-  .mb-marker{grid-column:span 6;}
+  .mosaic{grid-template-columns:repeat(2,1fr);column-gap:9px;padding:0 5vw 76px;}
+  .mtile{margin-bottom:9px;}
 }
 @media(max-width:560px){
-  .mtile,.mtile.tall,.mtile.big,.mtile.wide,.mtile.full{grid-column:span 6;aspect-ratio:3/4;}
-  .mtile.wide,.mtile.full{aspect-ratio:3/2;}
+  .mosaic{grid-template-columns:1fr;}
 }
 
 /* ============================ CAROUSEL GALLERY ============================ */

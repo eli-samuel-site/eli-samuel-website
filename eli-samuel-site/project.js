@@ -47,21 +47,45 @@
       </div>`).join('');
   }
 
-  /* asymmetric editorial grid (client pages). Tile sizes come from the item's
-     own "size", else from the wide flag, else a repeating rhythm so a plain
-     list of photos still lays out like it was art-directed. */
-  /* 7-item cycle that always completes 12-column rows: 6+6 | 4+4+4 | 8+4 */
-  const RHYTHM = ['big','big','std','std','std','wide','std'];
+  /* masonry mosaic (client pages). Each frame keeps its real orientation, so
+     nothing gets cropped to satisfy the layout. An item with a "marker" instead
+     of an image renders as a full-width section heading ("TOSSA|DE MAR"). */
   function renderMosaic(el, media){
-    el.innerHTML = media.map((m,i) => {
-      const size = m.size || (m.wide ? 'wide' : RHYTHM[i % RHYTHM.length]);
+    el.innerHTML = media.map(m => {
+      if(m.marker){
+        const parts = String(m.marker).split('|');
+        return `<div class="mb-marker">
+          <span class="m1">${esc(parts[0] || '')}</span><span class="m2">${esc(parts[1] || '')}</span>
+          <span class="line"></span></div>`;
+      }
+      const size = m.size || (m.wide ? 'land' : 'port');
       return `
       <div class="mtile ${size} lb-item"${videoAttrs(m)}>
-        <div class="img" style="background:${fill(m)}"></div>
+        <div class="img" style="position:absolute;inset:0;background:${fill(m)}"></div>
         ${playBtn(m)}${capHTML(m)}
       </div>`;
     }).join('');
+    layoutMosaic(el);
   }
+
+  /* measure each tile's real height and convert it to a grid row span, so the
+     grid packs like masonry while keeping strict left-to-right DOM order */
+  function layoutMosaic(el){
+    const gap = 12;
+    el.querySelectorAll('.mtile, .mb-marker').forEach(t => {
+      t.style.gridRowEnd = 'auto';
+      const h = t.getBoundingClientRect().height;
+      if(h) t.style.gridRowEnd = 'span ' + (Math.ceil(h) + gap);
+    });
+  }
+  let relayout;
+  window.addEventListener('resize', () => {
+    clearTimeout(relayout);
+    relayout = setTimeout(() => {
+      const el = document.querySelector('.mosaic');
+      if(el) layoutMosaic(el);
+    }, 150);
+  });
 
   function renderGallery(el, media){
     el.innerHTML = media.map(m => `

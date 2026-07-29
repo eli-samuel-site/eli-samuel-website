@@ -1,88 +1,16 @@
 {
   "items": [
-    {
-      "title": "soft weight",
-      "medium": "handmade book · ed. 40",
-      "price": "$120",
-      "kind": "book",
-      "image": "/images/uploads/1_kim-k_paper-mag_0028.jpg"
-    },
-    {
-      "title": "found light",
-      "medium": "handmade book · ed. 25",
-      "price": "$140",
-      "kind": "book",
-      "image": ""
-    },
-    {
-      "title": "scan study",
-      "medium": "artist book · unique",
-      "price": "$180",
-      "kind": "book",
-      "image": ""
-    },
-    {
-      "title": "direct flash",
-      "medium": "a2 archival print",
-      "price": "$85",
-      "kind": "print",
-      "image": ""
-    },
-    {
-      "title": "austin west",
-      "medium": "a2 archival print",
-      "price": "$85",
-      "kind": "print",
-      "image": ""
-    },
-    {
-      "title": "horizon",
-      "medium": "a1 archival print",
-      "price": "$130",
-      "kind": "print",
-      "image": ""
-    },
-    {
-      "title": "diary no.1",
-      "medium": "zine · ed. 100",
-      "price": "$28",
-      "kind": "zine",
-      "image": ""
-    },
-    {
-      "title": "grain",
-      "medium": "zine · ed. 100",
-      "price": "$28",
-      "kind": "zine",
-      "image": ""
-    },
-    {
-      "title": "still life",
-      "medium": "a3 archival print",
-      "price": "$60",
-      "kind": "print",
-      "image": ""
-    },
-    {
-      "title": "red car",
-      "medium": "a3 archival print",
-      "price": "$60",
-      "kind": "print",
-      "image": ""
-    },
-    {
-      "title": "contact sheet",
-      "medium": "risograph print",
-      "price": "$45",
-      "kind": "print",
-      "image": ""
-    },
-    {
-      "title": "collected",
-      "medium": "box set · ed. 15",
-      "price": "$260",
-      "kind": "box set",
-      "image": ""
-    }
+    { "title": "soft weight",   "medium": "handmade book · ed. 40", "price": "$120", "kind": "book",    "image": "" },
+    { "title": "found light",   "medium": "handmade book · ed. 25", "price": "$140", "kind": "book",    "image": "" },
+    { "title": "scan study",    "medium": "artist book · unique",   "price": "$180", "kind": "book",    "image": "" },
+    { "title": "direct flash",  "medium": "a2 archival print",      "price": "$85",  "kind": "print",   "image": "" },
+    { "title": "austin west",   "medium": "a2 archival print",      "price": "$85",  "kind": "print",   "image": "" },
+    { "title": "horizon",       "medium": "a1 archival print",      "price": "$130", "kind": "print",   "image": "" },
+    { "title": "diary no.1",    "medium": "zine · ed. 100",         "price": "$28",  "kind": "zine",    "image": "" },
+    { "title": "grain",         "medium": "zine · ed. 100",         "price": "$28",  "kind": "zine",    "image": "" },
+    { "title": "still life",    "medium": "a3 archival print",      "price": "$60",  "kind": "print",   "image": "" },
+    { "title": "red car",       "medium": "a3 archival print",      "price": "$60",  "kind": "print",   "image": "" },
+    { "title": "contact sheet", "medium": "risograph print",        "price": "$45",  "kind": "print",   "image": "" },
+    { "title": "collected",     "medium": "box set · ed. 15",       "price": "$260", "kind": "box set", "image": "" }
   ]
 }

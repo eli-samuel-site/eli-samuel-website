@@ -30,7 +30,7 @@
     <div class="topbar">
       <button class="menu-trigger" id="mtrig" aria-label="open menu">
         <span class="ham"><i></i><i></i><i></i></span>
-        <span class="wm">eli samuel</span>
+        <span class="wm">Eli Samuel</span>
       </button>
       <div class="tmeta">
         <span><b>Portfolio</b>image maker</span>
@@ -47,7 +47,7 @@
   const overlay = `
     <div class="overlay" id="overlay">
       <div class="ov-bar">
-        <span class="wm">eli samuel</span>
+        <span class="wm">Eli Samuel</span>
         <button class="ov-close" id="mclose">✕ close</button>
       </div>
       <div class="ov-left">
