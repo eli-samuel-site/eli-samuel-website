@@ -10,7 +10,11 @@
   --paper-2:#d8dedd;    /* deeper cool grey */
   --ink:#191b1b;
   --ink-soft:#5b615f;
-  --lime:#4ecc4e;       /* muted grass green (doc EXPLORE button #4ecc4e) */
+  /* accent — warm amber. sits with the warm project palettes and the red/purple
+     spreads without the acid-green clash. --lime kept as an alias so older rules
+     that still reference it pick up the same colour. */
+  --accent:#d9976a;
+  --lime:var(--accent);
   --red:#e43b31;        /* vermilion sampled clean from the doc red spread */
   --line:rgba(25,27,27,.16);
   --line-d:rgba(233,238,238,.16);
@@ -68,7 +72,10 @@ img{display:block;max-width:100%;}
 .menu-trigger .ham i{width:22px;height:2px;background:var(--lime);display:block;transition:transform .3s ease;}
 .menu-trigger:hover .ham i:nth-child(1){transform:translateX(4px);}
 .menu-trigger:hover .ham i:nth-child(3){transform:translateX(-4px);}
-.menu-trigger .wm{font-family:'Playfair Display',serif;font-weight:900;font-size:1.5rem;line-height:1;}
+/* wordmark: the site's display face (Anton), so the logo reads as part of the
+   same type system as the headlines and section labels */
+.menu-trigger .wm{font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;
+  font-size:1.36rem;letter-spacing:.045em;line-height:1;}
 .tmeta{display:flex;gap:26px;font-family:'Archivo',sans-serif;font-weight:700;font-size:.62rem;letter-spacing:.01em;line-height:1.2;color:#a29e94;}
 .tmeta b{display:block;color:var(--paper);font-weight:700;}
 /* right-hand section label in the condensed display face, like the report */
@@ -104,7 +111,8 @@ body[data-nav="clear"] .menu-trigger .ham i{background:#160f0b;}
   display:flex;align-items:center;justify-content:space-between;padding:0 22px;
   background:var(--black);color:var(--paper);
 }
-.ov-bar .wm{font-family:'Playfair Display',serif;font-weight:900;font-size:1.5rem;}
+.ov-bar .wm{font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;
+  font-size:1.36rem;letter-spacing:.045em;}
 .ov-close{background:none;border:none;color:var(--paper);cursor:pointer;
   font-family:'Space Mono',monospace;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;}
 .ov-close:hover{color:var(--lime);}
@@ -193,6 +201,9 @@ body[data-nav="clear"] .menu-trigger .ham i{background:#160f0b;}
 /* panel variant used alongside a hero-strip: less right-hand margin since
    there's no separate right column taking up space anymore */
 .panel.no-rightcol{margin-left:61vw;margin-right:4vw;}
+/* the default subrow tucks up under a two-line headline; with a single-word
+   title like "verano" that negative offset collides with it, so clear it */
+.panel.no-rightcol .subrow{margin-top:14px;}
 
 @media(max-width:900px){
   .hero-strip{position:relative;left:auto;top:auto;bottom:auto;width:auto;height:56vh;margin:0 2.4vw 14px;}
