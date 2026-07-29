@@ -47,6 +47,22 @@
       </div>`).join('');
   }
 
+  /* asymmetric editorial grid (client pages). Tile sizes come from the item's
+     own "size", else from the wide flag, else a repeating rhythm so a plain
+     list of photos still lays out like it was art-directed. */
+  /* 7-item cycle that always completes 12-column rows: 6+6 | 4+4+4 | 8+4 */
+  const RHYTHM = ['big','big','std','std','std','wide','std'];
+  function renderMosaic(el, media){
+    el.innerHTML = media.map((m,i) => {
+      const size = m.size || (m.wide ? 'wide' : RHYTHM[i % RHYTHM.length]);
+      return `
+      <div class="mtile ${size} lb-item"${videoAttrs(m)}>
+        <div class="img" style="background:${fill(m)}"></div>
+        ${playBtn(m)}${capHTML(m)}
+      </div>`;
+    }).join('');
+  }
+
   function renderGallery(el, media){
     el.innerHTML = media.map(m => `
       <div class="shot${m.wide ? ' wide' : ''}"${videoAttrs(m)}>
@@ -82,25 +98,39 @@
 
   function renderPanel(data){
     const panel = document.querySelector('.panel');
-    if(!panel) return;
 
-    const h1 = panel.querySelector('h1');
-    if(h1 && data.title) h1.innerHTML = esc(data.title).replace(/\n/g,'<br>');
+    /* title. A "|" splits it into two colour-able halves, e.g. "MODI|BODI" */
+    const h1 = document.querySelector('.js-title') || (panel && panel.querySelector('h1'));
+    if(h1 && data.title){
+      h1.innerHTML = data.title.includes('|')
+        ? data.title.split('|').map((part,i) =>
+            `<span class="t${i+1}">${esc(part)}</span>`).join('')
+        : esc(data.title).replace(/\n/g,'<br>');
+    }
 
-    const st = panel.querySelector('.subrow .st');
+    const st = document.querySelector('.js-subtitle') || (panel && panel.querySelector('.subrow .st'));
     if(st && data.subtitle) st.textContent = data.subtitle;
 
-    /* credits block (Verano-style pages) */
-    const credits = panel.querySelector('.credits');
+    /* free-text lede, separate from the credits block */
+    const lede = document.querySelector('.js-lede');
+    if(lede && data.intro){
+      lede.innerHTML = String(data.intro).split(/\n{2,}/)
+        .map(p => `<p>${linkify(p)}</p>`).join('');
+    }
+
+    /* credits block */
+    const credits = document.querySelector('.credits');
     if(credits){
       let html = '';
-      if(data.intro) html += `<p class="lead">${linkify(data.intro)}</p>`;
+      if(data.intro && !lede) html += `<p class="lead">${linkify(data.intro)}</p>`;
       (data.credits || []).forEach(row => {
         const people = (row.people || []).map(p => {
           const nm = esc(p.name || '');
-          return p.instagram
-            ? `<div>${nm} (<a href="https://instagram.com/${esc(p.instagram)}" target="_blank" rel="noopener">@${esc(p.instagram)}</a>)</div>`
-            : `<div>${nm}</div>`;
+          if(p.instagram)
+            return `<div>${nm} (<a href="https://instagram.com/${esc(p.instagram)}" target="_blank" rel="noopener">@${esc(p.instagram)}</a>)</div>`;
+          if(p.url)
+            return `<div><a href="${esc(p.url)}" target="_blank" rel="noopener">${nm}</a></div>`;
+          return `<div>${nm}</div>`;
         }).join('');
         if(!people) return;
         html += `<div class="crow"><div class="clabel">${esc(row.label || '')}</div>
@@ -110,7 +140,7 @@
     }
 
     /* three-column body copy (trend-report style pages) */
-    const cols = panel.querySelector('.cols');
+    const cols = panel && panel.querySelector('.cols');
     if(cols && Array.isArray(data.columns) && data.columns.length){
       cols.innerHTML = data.columns.map(col =>
         `<div>${(col.paragraphs || []).map(p => `<p>${linkify(p)}</p>`).join('')}</div>`
@@ -124,12 +154,14 @@
       const media = Array.isArray(data.media) ? data.media : [];
 
       const strip = document.querySelector('.hero-strip');
+      const mosaic = document.querySelector('.mosaic');
       const gallery = document.querySelector('.gallery');
       const collage = document.querySelectorAll('.collage .ctile');
       const fore = document.querySelectorAll('.foreimg');
       const qcols = document.querySelectorAll('.qcol');
 
       if(strip && media.length)        renderStrip(strip, media);
+      else if(mosaic && media.length)  renderMosaic(mosaic, media);
       else if(gallery && media.length) renderGallery(gallery, media);
       else if(collage.length){
         fillSlots(Array.from(collage), media);

@@ -4,7 +4,7 @@
 (function(){
   const PHOTO = [
     { num:'01', title:'VERANO',              section:'1.1 VERANO',              file:'index.html'     },
-    { num:'02', title:'MAXIMALISM',          section:'1.2 MAXIMALISM',          file:'project-2.html' },
+    { num:'02', title:'MODIBODI',            section:'1.2 MODIBODI',            file:'project-2.html' },
     { num:'03', title:'SENSORY STORYTELLING',section:'1.3 SENSORY STORYTELLING',file:'project-3.html' },
     { num:'04', title:'GRUNGE',              section:'1.4 GRUNGE',              file:'project-4.html' },
     { num:'05', title:'SURREALISM',          section:'1.6 SURREALISM',          file:'project-6.html' },

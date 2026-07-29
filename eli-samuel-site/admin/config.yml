@@ -53,6 +53,8 @@ credits_field: &credits_field
         - { label: "Name", name: "name", widget: "string" }
         - { label: "Instagram handle", name: "instagram", widget: "string", required: false,
             hint: "Without the @, e.g. elisamuelphoto" }
+        - { label: "Website link", name: "url", widget: "string", required: false,
+            hint: "Use instead of Instagram for a client or agency, e.g. https://www.modibodi.com" }
 
 title_field: &title_field
   { label: "Title", name: "title", widget: "string" }
@@ -77,12 +79,16 @@ collections:
           - *credits_field
           - *media_field
 
-      - file: "eli-samuel-site/data/projects/maximalism.json"
-        name: "maximalism"
-        label: "Maximalism"
+      - file: "eli-samuel-site/data/projects/modibodi.json"
+        name: "modibodi"
+        label: "Modibodi"
+        description: "Modibodi campaign — Tossa de Mar."
         fields:
           - *title_field
           - *subtitle_field
+          - { label: "Description", name: "intro", widget: "text", required: false,
+              hint: "Plain text. Blank line starts a new paragraph. Any @handle becomes an Instagram link." }
+          - *credits_field
           - *media_field
 
       - file: "eli-samuel-site/data/projects/sensory-storytelling.json"
