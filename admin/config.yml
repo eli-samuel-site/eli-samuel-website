@@ -3,8 +3,8 @@ backend:
   branch: main
 
 # Where uploaded photos are stored in the repo, and how the site references them.
-# (Files live in the eli-samuel-site/ subfolder of the repo, so repo-root paths are prefixed.)
-media_folder: "eli-samuel-site/images/uploads"
+# (Files live at the repo root.)
+media_folder: "images/uploads"
 public_folder: "/images/uploads"
 
 site_url: https://eli-samuel-portfolio.netlify.app
@@ -67,7 +67,7 @@ collections:
     label: "Projects"
     delete: false
     files:
-      - file: "eli-samuel-site/data/projects/verano.json"
+      - file: "data/projects/verano.json"
         name: "verano"
         label: "Verano"
         description: "Barcelona summer project — photos, video, copy and credits."
@@ -79,7 +79,7 @@ collections:
           - *credits_field
           - *media_field
 
-      - file: "eli-samuel-site/data/projects/modibodi.json"
+      - file: "data/projects/modibodi.json"
         name: "modibodi"
         label: "Modibodi"
         description: "Modibodi campaign — Tossa de Mar."
@@ -91,7 +91,7 @@ collections:
           - *credits_field
           - *media_field
 
-      - file: "eli-samuel-site/data/projects/sensory-storytelling.json"
+      - file: "data/projects/sensory-storytelling.json"
         name: "sensory-storytelling"
         label: "Sensory Storytelling"
         fields:
@@ -99,7 +99,7 @@ collections:
           - *subtitle_field
           - *media_field
 
-      - file: "eli-samuel-site/data/projects/grunge.json"
+      - file: "data/projects/grunge.json"
         name: "grunge"
         label: "Grunge"
         fields:
@@ -107,7 +107,7 @@ collections:
           - *subtitle_field
           - *media_field
 
-      - file: "eli-samuel-site/data/projects/scrapbook-scanner.json"
+      - file: "data/projects/scrapbook-scanner.json"
         name: "scrapbook-scanner"
         label: "Scrapbook / Scanner"
         fields:
@@ -115,7 +115,7 @@ collections:
           - *subtitle_field
           - *media_field
 
-      - file: "eli-samuel-site/data/projects/surrealism.json"
+      - file: "data/projects/surrealism.json"
         name: "surrealism"
         label: "Surrealism"
         fields:
@@ -128,7 +128,7 @@ collections:
     label: "Store"
     delete: false
     files:
-      - file: "eli-samuel-site/data/store.json"
+      - file: "data/store.json"
         name: "items"
         label: "Store items"
         description: "Books, prints and editions shown on the store page."
