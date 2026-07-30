@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>eli samuel — projects</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Mono:wght@400;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+<style>
+  :root{--green:#2fd62c;--ink:#0d0c0b;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--green);color:var(--ink);font-family:'Space Mono',monospace;min-height:100vh;position:relative;}
+  a{color:inherit;text-decoration:none;}
+
+  /* ===== shared black nav bar ===== */
+  .hdr{
+    display:flex;align-items:center;gap:40px;
+    background:var(--ink);color:#e7e6de;
+    padding:12px 26px;
+  }
+  .hdr .brand{font-family:'Playfair Display',serif;font-weight:900;font-size:1.5rem;line-height:1;}
+  .hdr nav{display:flex;gap:26px;font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;}
+  .hdr nav a{color:#bdbbb2;padding-bottom:2px;border-bottom:1px solid transparent;transition:.2s;}
+  .hdr nav a:hover,.hdr nav a.active{color:#e7e6de;border-color:var(--green);}
+  .hdr .right{margin-left:auto;display:flex;gap:26px;align-items:baseline;font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;}
+  .hdr .right .pg{font-size:.8rem;}
+  .rule{height:1px;background:var(--ink);opacity:.85;}
+
+  /* ===== grid ===== */
+  .wrap{padding:34px 26px 40px;}
+  .grid{display:grid;grid-template-columns:repeat(10,1fr);gap:4px 14px;position:relative;}
+  .slot{min-height:230px;}
+  .slot .n{font-size:.62rem;letter-spacing:.1em;margin-bottom:8px;}
+  .slot .thumb{
+    display:block;width:100%;aspect-ratio:4/5;position:relative;overflow:hidden;
+    border:1px solid rgba(13,12,11,.35);cursor:pointer;transition:transform .3s ease;
+  }
+  .slot .thumb:hover{transform:translateY(-4px) rotate(-1deg);}
+  .slot .thumb .fill{position:absolute;inset:0;}
+  .slot .thumb .kind{position:absolute;top:5px;left:5px;font-size:.46rem;letter-spacing:.08em;text-transform:uppercase;background:var(--ink);color:var(--green);padding:2px 4px;}
+  .slot .thumb.video .kind{background:#e23820;color:#fff;}
+  @media(max-width:1000px){.grid{grid-template-columns:repeat(5,1fr);}}
+  @media(max-width:620px){.grid{grid-template-columns:repeat(3,1fr);}.slot{min-height:auto;}}
+
+  .faded{
+    position:absolute;right:0;top:150px;width:250px;
+    font-size:.66rem;line-height:1.35;letter-spacing:.05em;text-transform:uppercase;
+    color:rgba(13,12,11,.28);text-align:left;
+  }
+  @media(max-width:1000px){.faded{display:none;}}
+
+  /* ===== bottom quote ===== */
+  .quote{text-align:center;padding:26px 6vw 60px;}
+  .quote blockquote{
+    font-family:'Anton',sans-serif;text-transform:uppercase;
+    font-size:clamp(1.6rem,5.2vw,4rem);line-height:.95;letter-spacing:.01em;
+  }
+  .quote .attr{margin-top:22px;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;}
+</style>
+</head>
+<body>
+
+  <div class="hdr">
+    <div class="brand">eli samuel</div>
+    <nav>
+      <a href="projects.html" class="active">projects</a>
+      <a href="store.html">store</a>
+      <a href="mailto:hello@elisamuelphoto.com">contact</a>
+    </nav>
+    <div class="right"><span>projects / index</span><span class="pg">01</span></div>
+  </div>
+  <div class="rule"></div>
+
+  <div class="wrap">
+    <div class="grid" id="grid"></div>
+    <div class="faded">if you want work that shouts without apology, turn the flash on — and let the intensity do the heavy lifting.</div>
+  </div>
+
+  <div class="quote">
+    <blockquote>"the work should feel<br>unapologetic, raw, and human."</blockquote>
+    <div class="attr">eli samuel, image maker</div>
+  </div>
+
+<script>
+  // which slots hold a thumbnail (mirrors the reference scatter)
+  const imgs={1:'photo',2:'photo',4:'photo',7:'photo',8:'video',13:'photo',15:'video',
+              19:'photo',22:'photo',24:'photo',26:'photo',29:'photo',30:'video'};
+  const names={1:'chevrolet',2:'volvo',4:'sherri hill',7:'el patio',8:'drive',13:'annex',
+               15:'train like a ballerina',19:'camilla araujo',22:'ellments',24:'selfless',
+               26:'fashion',29:'tesla cybertruck',30:'reel'};
+  const g=document.getElementById('grid');
+  const grad=['linear-gradient(160deg,#2a3550,#0d1220)','linear-gradient(160deg,#4a6b8a,#101c26)',
+    'linear-gradient(160deg,#7a4632,#241009)','linear-gradient(160deg,#3a4a3a,#101a10)',
+    'linear-gradient(160deg,#8a3021,#2a0f0b)','linear-gradient(160deg,#5a4a6b,#181026)'];
+  let h='';
+  for(let i=1;i<=30;i++){
+    const n='['+String(i).padStart(2,'0')+']';
+    let cell='<div class="slot"><div class="n">'+n+'</div>';
+    if(imgs[i]){
+      const kind=imgs[i];
+      const gg=grad[i%grad.length];
+      cell+='<a class="thumb '+(kind==='video'?'video':'')+'" href="project.html" title="'+names[i]+'">'
+          +'<div class="fill" style="background:'+gg+'"></div>'
+          +'<span class="kind">'+(kind==='video'?'film':'photo')+'</span></a>';
+    }
+    cell+='</div>';
+    h+=cell;
+  }
+  g.innerHTML=h;
+</script>
+</body>
+</html>

@@ -1,0 +1,173 @@
+{
+  "title": "MODI|BODI",
+  "subtitle": "tossa de mar, spain · campaign",
+  "intro": "A summer campaign for Modibodi, shot on location in Tossa de Mar on the Costa Brava — in and around Hotel Reymar, then out through the town's beaches and back streets.\n\nThe brief was ease. Swimwear and period underwear photographed the way they're actually worn: salt water, hot stone, wet hair, an afternoon that runs long. No studio, no staging — just strong midday light and a coastline doing most of the work.",
+  "credits": [
+    {
+      "label": "client",
+      "people": [
+        {
+          "name": "Modibodi",
+          "url": "https://www.modibodi.com"
+        }
+      ]
+    },
+    {
+      "label": "photography",
+      "people": [
+        {
+          "name": "Eli Samuel",
+          "instagram": "elisamuelphoto"
+        },
+        {
+          "name": "Charles Grant",
+          "instagram": "charlesgrant_"
+        }
+      ]
+    },
+    {
+      "label": "talent",
+      "people": [
+        {
+          "name": "Zaya Sabara",
+          "instagram": "a.zayaa_"
+        }
+      ]
+    },
+    {
+      "label": "agency",
+      "people": [
+        {
+          "name": "Two Management Barcelona"
+        }
+      ]
+    },
+    {
+      "label": "location",
+      "people": [
+        {
+          "name": "Hotel Reymar · Tossa de Mar, Girona"
+        }
+      ]
+    }
+  ],
+  "media": [
+    {
+      "marker": "TOSSA|DE MAR"
+    },
+    {
+      "image": "images/mb-01.jpg",
+      "caption": "the set-up",
+      "id": "002·001",
+      "wide": true
+    },
+    {
+      "image": "images/mb-02.jpg",
+      "caption": "watermelon",
+      "id": "002·002",
+      "wide": false
+    },
+    {
+      "image": "images/mb-03.jpg",
+      "caption": "lunch",
+      "id": "002·003",
+      "wide": true
+    },
+    {
+      "image": "images/mb-04.jpg",
+      "caption": "yellow board",
+      "id": "002·004",
+      "wide": true
+    },
+    {
+      "image": "images/mb-05.jpg",
+      "caption": "shoreline",
+      "id": "002·005",
+      "wide": false
+    },
+    {
+      "image": "images/mb-06.jpg",
+      "caption": "crossing",
+      "id": "002·006",
+      "wide": false
+    },
+    {
+      "image": "images/mb-07.jpg",
+      "caption": "sea wall",
+      "id": "002·007",
+      "wide": true
+    },
+    {
+      "marker": "SALT|& STONE"
+    },
+    {
+      "image": "images/mb-08.jpg",
+      "caption": "beach bar",
+      "id": "002·008",
+      "wide": false
+    },
+    {
+      "image": "images/mb-09.jpg",
+      "caption": "jacuzzi",
+      "id": "002·009",
+      "wide": true
+    },
+    {
+      "image": "images/mb-10.jpg",
+      "caption": "keepy-uppy",
+      "id": "002·010",
+      "wide": false
+    },
+    {
+      "image": "images/mb-11.jpg",
+      "caption": "sunbeds",
+      "id": "002·011",
+      "wide": true
+    },
+    {
+      "image": "images/mb-12.jpg",
+      "caption": "frisbee",
+      "id": "002·012",
+      "wide": false
+    },
+    {
+      "image": "images/mb-13.jpg",
+      "caption": "in a mod.",
+      "id": "002·013",
+      "wide": false
+    },
+    {
+      "image": "images/mb-14.jpg",
+      "caption": "snorkel",
+      "id": "002·014",
+      "wide": false
+    },
+    {
+      "marker": "IN THE|WATER"
+    },
+    {
+      "image": "images/mb-15.jpg",
+      "caption": "the pontoon",
+      "id": "002·015",
+      "wide": false
+    },
+    {
+      "image": "images/mb-16.jpg",
+      "caption": "salt water",
+      "id": "002·016",
+      "wide": false
+    },
+    {
+      "image": "images/mb-17.jpg",
+      "caption": "floating",
+      "id": "002·017",
+      "wide": true
+    },
+    {
+      "image": "images/mb-18.jpg",
+      "caption": "contax t2",
+      "id": "002·018",
+      "wide": false
+    }
+  ]
+}
